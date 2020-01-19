@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Lowpoly_Sports_Car_2_in_1\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Editor\GaugeInspector.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/GIT/DuoRace/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -290,6 +291,12 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="VehiclePhysics">
+      <HintPath>D:/GIT/DuoRace/Assets/Vehicle Physics Pro/Sdk/VehiclePhysics.dll</HintPath>
+    </Reference>
+    <Reference Include="VehiclePhysics_Editor">
+      <HintPath>D:/GIT/DuoRace/Assets/Vehicle Physics Pro/Sdk/Editor/VehiclePhysics_Editor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>D:/GIT/DuoRace/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

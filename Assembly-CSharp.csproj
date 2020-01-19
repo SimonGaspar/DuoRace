@@ -64,7 +64,40 @@
   <ItemGroup>
     <Compile Include="Assets\FollowCamera.cs" />
     <Compile Include="Assets\Move.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\BankedPlatform.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\CaptureScreenshot.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\EndlessMovingSurface.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\FollowHeading.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\MovableObject.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\PauseVehicle.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\AidsPanel.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\CloseOnKeyOrClick.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\CloseOnStart.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\ConfigDialog.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\Dashboard.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\DeviceDebugInfo.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\EscapeDialog.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\ForceFeedbackMonitor.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\Gauge.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\GearModeSelector.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\GenericMenu.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\HideOnStart.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\HoverHandler.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\IgnitionKey.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\InputConfigDialog.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\InputMonitor.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\MenuOverlay.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\MultiToggle.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\ShiftIndicator.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\ShowValueFromSlider.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\TelemetryChartToolbar.cs" />
+    <Compile Include="Assets\Vehicle Physics Pro\Scenes\UI\Scripts\VehicleSetupDialog.cs" />
+    <None Include="Assets\Vehicle Physics Pro\Sample Assets\Locations\! Locations.txt" />
     <None Include="Assets\Lowpoly_Sports_Car_2_in_1\readme.txt" />
+    <None Include="Assets\Vehicle Physics Pro\Sample Assets\Art\Fonts\OFL.txt" />
+    <None Include="Assets\Vehicle Physics Pro\Sample Assets\Art\Models\Playground Lite\Shaders\World UV Map.shader" />
+    <None Include="Assets\Vehicle Physics Pro\Sample Assets\Art\Fonts\_Readme.txt" />
+    <None Include="Assets\Vehicle Physics Pro\VPP Project Settings\!Readme - Project Settings.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/GIT/DuoRace/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -268,6 +301,9 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VehiclePhysics">
+      <HintPath>D:/GIT/DuoRace/Assets/Vehicle Physics Pro/Sdk/VehiclePhysics.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
