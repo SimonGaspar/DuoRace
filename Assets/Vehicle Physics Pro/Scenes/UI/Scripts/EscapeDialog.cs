@@ -23,39 +23,42 @@ public class EscapeDialog : MonoBehaviour
 	[Header("Buttons")]
 	public Button continueButton;
 	public Button resetCarButton;
-	public Button resetDemoButton;
-	public Button quitDemoButton;
+	public Button resetButton;
+    public Button optionsButton;
+    public Button quitButton;
 
 
-	// float m_currentTimeScale;
+	 float m_currentTimeScale;
 
 
 	void OnEnable ()
 		{
 		AddListener(continueButton, OnContinue);
-		AddListener(resetCarButton, OnResetCar);
-		AddListener(resetDemoButton, OnResetDemo);
-		AddListener(quitDemoButton, OnQuitDemo);
+        AddListener(optionsButton, OnOptions);
+        AddListener(resetCarButton, OnResetCar);
+		AddListener(resetButton, OnReset);
+		AddListener(quitButton, OnQuit);
 
-		// m_currentTimeScale = Time.timeScale;
-		// Time.timeScale = 0.0f;
+		 m_currentTimeScale = Time.timeScale;
+		 Time.timeScale = 0.0f;
 		}
 
 
 	void OnDisable ()
 		{
 		RemoveListener(continueButton, OnContinue);
-		RemoveListener(resetCarButton, OnResetCar);
-		RemoveListener(resetDemoButton, OnResetDemo);
-		RemoveListener(quitDemoButton, OnQuitDemo);
+        RemoveListener(optionsButton, OnOptions);
+        RemoveListener(resetCarButton, OnResetCar);
+		RemoveListener(resetButton, OnReset);
+		RemoveListener(quitButton, OnQuit);
 
-		// Time.timeScale = m_currentTimeScale;
+		 Time.timeScale = m_currentTimeScale;
 		}
 
 
 	void Update ()
-		{
-		if (Input.GetKeyDown(escapeKey))
+		{            
+            if (Input.GetKeyDown(escapeKey))
 			this.gameObject.SetActive(false);
 		}
 
@@ -68,8 +71,14 @@ public class EscapeDialog : MonoBehaviour
 		this.gameObject.SetActive(false);
 		}
 
+    void OnOptions ()
+        {
+            Debug.Log("options");   
+            var foundMenuObject = FindObjectOfType<MenuOverlay>();
+            foundMenuObject.SetEnabled(foundMenuObject.setupDialog, true);
+        }
 
-	void OnResetCar ()
+        void OnResetCar ()
 		{
 		if (vehicle != null)
 			{
@@ -83,13 +92,14 @@ public class EscapeDialog : MonoBehaviour
 		}
 
 
-	void OnResetDemo ()
+	void OnReset ()
 		{
+            Debug.Log("reset");
 		EdyCommonTools.SceneReload.Reload();
 		}
 
 
-	void OnQuitDemo ()
+	void OnQuit ()
 		{
 		Application.Quit();
 		}
@@ -105,9 +115,6 @@ public class EscapeDialog : MonoBehaviour
 		{
 		if (button != null) button.onClick.RemoveListener(method);
 		}
-
-
-
 
 	}
 }

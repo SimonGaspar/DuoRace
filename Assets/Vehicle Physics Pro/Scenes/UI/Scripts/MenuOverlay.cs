@@ -140,7 +140,7 @@ public class MenuOverlay : MonoBehaviour
 		}
 
 
-	void OnSetup (bool value)
+	public void OnSetup (bool value)
 		{
 		SetEnabled(setupDialog, value);
 		HideEscapeDialog();
@@ -223,7 +223,7 @@ public class MenuOverlay : MonoBehaviour
 		}
 
 
-	void SetEnabled (GameObject go, bool enabled)
+	public void SetEnabled (GameObject go, bool enabled)
 		{
 		if (go != null) go.SetActive(enabled);
 		}
