@@ -31,7 +31,17 @@ public class EscapeDialog : MonoBehaviour
 	 float m_currentTimeScale;
 
 
-	void OnEnable ()
+        void PauseAllAudio()
+        {
+            AudioListener.pause = true;
+        }
+
+        void ResumeAllAudio()
+        {
+            AudioListener.pause = false;
+        }
+
+        void OnEnable ()
 		{
 		AddListener(continueButton, OnContinue);
         AddListener(optionsButton, OnOptions);
@@ -41,6 +51,8 @@ public class EscapeDialog : MonoBehaviour
 
 		 m_currentTimeScale = Time.timeScale;
 		 Time.timeScale = 0.0f;
+
+            PauseAllAudio();
 		}
 
 
@@ -53,6 +65,8 @@ public class EscapeDialog : MonoBehaviour
 		RemoveListener(quitButton, OnQuit);
 
 		 Time.timeScale = m_currentTimeScale;
+
+            ResumeAllAudio();
 		}
 
 
