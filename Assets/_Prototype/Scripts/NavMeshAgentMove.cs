@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NavMeshAgentMove : MonoBehaviour
 {
     public GameObject Goals;
     public float rotationStrength = 1f;
-    public float distanceOfPoint = 30;
+    public float distanceOfPoint = 150;
     public static string prefixOfPoint = "CheckPoint";
     private Transform goal;
     private List<Transform> goals = new List<Transform>();
@@ -37,5 +38,7 @@ public class NavMeshAgentMove : MonoBehaviour
             goal = goals[iter];
             agent.destination = goal.position;
         }
+
+        this.GetComponent<NavMeshAgent>().speed = this.GetComponent<NavMeshAgent>().speed < 60 ? this.GetComponent<NavMeshAgent>().speed < 20 ? this.GetComponent<NavMeshAgent>().speed * Random.Range(1f, 1.5f) : this.GetComponent<NavMeshAgent>().speed * Random.Range(0.5f, 1.5f) : 40;
     }
 }

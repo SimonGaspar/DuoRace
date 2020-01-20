@@ -165,7 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1043734020679099995}
-  - component: {fileID: 829173390861912836}
   - component: {fileID: 5378021708430742249}
   - component: {fileID: 8095267800424251848}
   - component: {fileID: -6227083813899682188}
@@ -196,22 +195,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &829173390861912836
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042035263529216807}
-  serializedVersion: 2
-  m_Mass: 1500
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!195 &5378021708430742249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -221,14 +204,14 @@ NavMeshAgent:
   m_GameObject: {fileID: 1042035263529216807}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 20
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0
@@ -257,7 +240,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042035263529216807}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.94, y: 0.43, z: 3.68}

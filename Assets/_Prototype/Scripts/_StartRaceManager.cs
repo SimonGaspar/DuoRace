@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using VehiclePhysics;
 
@@ -12,7 +13,7 @@ public class _StartRaceManager : MonoBehaviour
     public List<GameObject> Cars = new List<GameObject>();
     public GameObject Goals;
     public string prefixOfPosition = "Position";
-    public static int maxLap=1;
+    public static int maxLaps=1;
     public GameObject vpCamera;
 
     public static GameObject PlayerInstance { get; private set; }
@@ -26,7 +27,7 @@ public class _StartRaceManager : MonoBehaviour
     void Awake()
     {
         var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
-        laps.text = $"Laps {currentLap}/{maxLap}";
+        laps.text = $"Laps {currentLap}/{maxLaps}";
 
         animator = this.GetComponent<Animator>();
         var position = StartPosition.GetComponentsInChildren<Transform>().Where(x => x.name.Contains(prefixOfPosition)).ToList();
@@ -38,7 +39,7 @@ public class _StartRaceManager : MonoBehaviour
         for (int i = 1; i < Cars.Count; i++) {
             var carObject = GameObject.Instantiate(Cars[i], position[i].position, position[i].rotation);
             var agentMoveComponent = carObject.GetComponent<NavMeshAgentMove>();
-            carObject.GetComponent<Rigidbody>().isKinematic = true;
+            //carObject.GetComponent<Rigidbody>().isKinematic = true;
             agentMoveComponent.Goals = Goals;
             CreatedCars.Add(carObject);
         }
@@ -55,7 +56,7 @@ public class _StartRaceManager : MonoBehaviour
         {
             var carObject = car.GetComponent<NavMeshAgentMove>();
             carObject.Init();
-            car.GetComponent<Rigidbody>().isKinematic = false;
+            //car.GetComponent<Rigidbody>().isKinematic = false;
             carObject.enabled = true;
         }
     }
@@ -65,8 +66,8 @@ public class _StartRaceManager : MonoBehaviour
         PlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
         foreach (var car in CreatedCars)
         {
-            var carObject = car.GetComponent<NavMeshAgentMove>();
-            car.GetComponent<Rigidbody>().isKinematic = true;
+            var carObject = car.GetComponent<NavMeshAgent>();
+            //car.GetComponent<Rigidbody>().isKinematic = true;
             carObject.enabled = false;
         }
     }
@@ -83,20 +84,19 @@ public class _StartRaceManager : MonoBehaviour
                 iter = 0;
                 currentLap++;
 
-                if (currentLap <= maxLap)
+                if (currentLap <= maxLaps)
                 {
                     var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
-                    laps.text = $"Laps {currentLap}/{maxLap}";
+                    laps.text = $"Laps {currentLap}/{maxLaps}";
                 }
             }
-            else 
+            else
             {
                 _goal = _goals[iter];
             }
         }
-
         if (gameOver) {
-            if (currentLap > maxLap)
+            if (currentLap > maxLaps)
             {
                 StopAgentsAndPlayer();
             }
@@ -106,7 +106,7 @@ public class _StartRaceManager : MonoBehaviour
 
     public static void CheckEndGame()
     {
-        if (!gameOver && currentLap > maxLap)
+        if (!gameOver && currentLap > maxLaps)
         {
             gameOver = true;
             animator.SetBool("GameOver", gameOver);
