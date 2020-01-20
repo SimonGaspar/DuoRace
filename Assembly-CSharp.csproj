@@ -67,6 +67,7 @@
     <Compile Include="Assets\_Prototype\Scripts\AnimatorStartGame.cs" />
     <Compile Include="Assets\_Prototype\Scripts\NavMeshAgentMove.cs" />
     <Compile Include="Assets\FollowCamera.cs" />
+    <Compile Include="Assets\GameOver.cs" />
     <Compile Include="Assets\Move.cs" />
     <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\BankedPlatform.cs" />
     <Compile Include="Assets\Vehicle Physics Pro\Sample Assets\Scripts\Utility\CaptureScreenshot.cs" />

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using VehiclePhysics;
 
 public class _StartRaceManager : MonoBehaviour
 {
@@ -10,14 +12,28 @@ public class _StartRaceManager : MonoBehaviour
     public List<GameObject> Cars = new List<GameObject>();
     public GameObject Goals;
     public string prefixOfPosition = "Position";
+    public static int maxLap=1;
+    public GameObject vpCamera;
+
+    public static GameObject PlayerInstance { get; private set; }
+
     private static List<GameObject> CreatedCars = new List<GameObject>();
-    private Animator animator;
+    private List<Transform> _goals = new List<Transform>();
+    private Transform _goal; 
+    private static Animator animator;
+    private static int currentLap = 1;
+    private static bool gameOver = false;
     void Awake()
     {
+        var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
+        laps.text = $"Laps {currentLap}/{maxLap}";
+
         animator = this.GetComponent<Animator>();
         var position = StartPosition.GetComponentsInChildren<Transform>().Where(x => x.name.Contains(prefixOfPosition)).ToList();
-        Player.transform.position = position[0].position;
-        Player.transform.rotation = position[0].rotation;
+        PlayerInstance = GameObject.Instantiate(Player, position[0].position, position[0].rotation);
+        //Player.transform.position = position[0].position;
+        //Player.transform.rotation = position[0].rotation;
+        PlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
 
         for (int i = 1; i < Cars.Count; i++) {
             var carObject = GameObject.Instantiate(Cars[i], position[i].position, position[i].rotation);
@@ -26,15 +42,75 @@ public class _StartRaceManager : MonoBehaviour
             agentMoveComponent.Goals = Goals;
             CreatedCars.Add(carObject);
         }
+
+        _goals = Goals.GetComponentsInChildren<Transform>().Where(x => x.name.Contains(NavMeshAgentMove.prefixOfPoint)).ToList();
+        _goal = _goals.First();
+
+        cameraTarget= vpCamera.GetComponent<VPCameraController>();
     }
 
-    public static void StartAgents() {
+    public static void StartAgentsAndPlayer() {
+        PlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
         foreach (var car in CreatedCars)
         {
             var carObject = car.GetComponent<NavMeshAgentMove>();
             carObject.Init();
             car.GetComponent<Rigidbody>().isKinematic = false;
             carObject.enabled = true;
+        }
+    }
+
+    public static void StopAgentsAndPlayer()
+    {
+        PlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
+        foreach (var car in CreatedCars)
+        {
+            var carObject = car.GetComponent<NavMeshAgentMove>();
+            car.GetComponent<Rigidbody>().isKinematic = true;
+            carObject.enabled = false;
+        }
+    }
+
+    int iter = 0;
+    float distanceOfPoint = 50f;
+    VPCameraController cameraTarget;
+    void Update()
+    {
+        if (!gameOver && Vector3.Distance(_goal.position, PlayerInstance.transform.position) < distanceOfPoint)
+        {
+            if (++iter == _goals.Count)
+            {
+                iter = 0;
+                currentLap++;
+
+                if (currentLap <= maxLap)
+                {
+                    var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
+                    laps.text = $"Laps {currentLap}/{maxLap}";
+                }
+            }
+            else 
+            {
+                _goal = _goals[iter];
+            }
+        }
+
+        if (gameOver) {
+            if (currentLap > maxLap)
+            {
+                StopAgentsAndPlayer();
+            }
+        }
+        cameraTarget.target = PlayerInstance.transform;
+    }
+
+    public static void CheckEndGame()
+    {
+        if (!gameOver && currentLap > maxLap)
+        {
+            gameOver = true;
+            animator.SetBool("GameOver", gameOver);
+            StopAgentsAndPlayer();
         }
     }
 }

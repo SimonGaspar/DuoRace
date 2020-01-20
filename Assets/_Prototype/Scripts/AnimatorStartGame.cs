@@ -17,7 +17,7 @@ public class AnimatorStartGame : StateMachineBehaviour
     //}
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _StartRaceManager.StartAgents();
+        _StartRaceManager.StartAgentsAndPlayer();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

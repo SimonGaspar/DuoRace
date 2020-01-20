@@ -8,7 +8,7 @@ public class NavMeshAgentMove : MonoBehaviour
     public GameObject Goals;
     public float rotationStrength = 1f;
     public float distanceOfPoint = 30;
-    public string prefixOfPoint = "CheckPoint";
+    public static string prefixOfPoint = "CheckPoint";
     private Transform goal;
     private List<Transform> goals = new List<Transform>();
     private UnityEngine.AI.NavMeshAgent agent;
