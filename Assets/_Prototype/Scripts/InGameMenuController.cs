@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class InGameMenuController : MonoBehaviour
 {
     [SerializeField] private int menuNumber;
+    [SerializeField] private string currentLevel;
+    [SerializeField] private string mainMenuLevel;
 
     #region Menu Dialogs
     [Header("Main Menu Components")]
@@ -19,6 +21,7 @@ public class InGameMenuController : MonoBehaviour
     [SerializeField] private GameObject mainMenuDialog;
     [SerializeField] private GameObject quitDialog;
     [SerializeField] private GameObject controlsDialog;
+    [SerializeField] private GameObject gameOverDialog;
     #endregion
 
     private AudioSource[] sources;
@@ -85,7 +88,6 @@ public class InGameMenuController : MonoBehaviour
     {
         Time.timeScale = 0;
         menuDefaultCanvas.GetComponent<CanvasGroup>().alpha = 1f;        
-        //AudioListener.pause = true;
         PauseAudio();
         menuNumber = 1;
     }
@@ -152,9 +154,13 @@ public class InGameMenuController : MonoBehaviour
     }
     #endregion
 
-    public void LoadLevel(string levelToLoad)
+    public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene(mainMenuLevel);
+    }
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(currentLevel);
     }
 
     #region Back to Menus
@@ -170,4 +176,10 @@ public class InGameMenuController : MonoBehaviour
     }
     #endregion
 
+    public void GameOverDialog()
+    {
+        PauseGame();
+        pauseDialog.SetActive(false);
+        gameOverDialog.SetActive(true);
+    }
 }
