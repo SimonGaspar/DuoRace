@@ -24,8 +24,11 @@ public class _StartRaceManager : MonoBehaviour
     private static Animator animator;
     private static int currentLap = 1;
     private static bool gameOver = false;
+    private static int position;
+    private bool startEnd;
     void Awake()
     {
+        startEnd = true;
         var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
         laps.text = $"Laps {currentLap}/{maxLaps}";
 
@@ -98,6 +101,12 @@ public class _StartRaceManager : MonoBehaviour
         if (gameOver) {
             if (currentLap > maxLaps)
             {
+                if (startEnd)
+                {
+                    var gameOverText = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("GameOver")).First();
+                    gameOverText.text = gameOverText.text.Replace("{position}", $"{position}.");
+                    startEnd = false;
+                }
                 StopAgentsAndPlayer();
             }
         }
@@ -109,8 +118,9 @@ public class _StartRaceManager : MonoBehaviour
         if (!gameOver && currentLap > maxLaps)
         {
             gameOver = true;
-            animator.SetBool("GameOver", gameOver);
+            position = CreatedCars.Select(x => x.GetComponent<NavMeshAgentMove>()).Count(x => x.currentLaps > maxLaps)+1;
             StopAgentsAndPlayer();
+            animator.SetBool("GameOver", gameOver);
         }
     }
 }

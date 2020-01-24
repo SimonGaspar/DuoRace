@@ -128,10 +128,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 20
+  m_Speed: 14
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 200
+  m_AngularSpeed: 150
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -155,6 +155,7 @@ MonoBehaviour:
   Goals: {fileID: 0}
   rotationStrength: 2
   distanceOfPoint: 30
+  currentLaps: 0
 --- !u!65 &6494506468470550510
 BoxCollider:
   m_ObjectHideFlags: 0

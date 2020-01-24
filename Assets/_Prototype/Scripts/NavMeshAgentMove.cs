@@ -14,10 +14,14 @@ public class NavMeshAgentMove : MonoBehaviour
     private List<Transform> goals = new List<Transform>();
     private UnityEngine.AI.NavMeshAgent agent;
 
-    private int iter = 0;
+    private int iter;
+    public int currentLaps;
 
     void Awake() 
     {
+        iter = 0;
+        currentLaps = 0;
+
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = this.transform.position;
         agent.stoppingDistance = 20;
@@ -39,6 +43,12 @@ public class NavMeshAgentMove : MonoBehaviour
             agent.destination = goal.position;
         }
 
-        this.GetComponent<NavMeshAgent>().speed = this.GetComponent<NavMeshAgent>().speed < 60 ? this.GetComponent<NavMeshAgent>().speed < 20 ? this.GetComponent<NavMeshAgent>().speed * Random.Range(1f, 1.5f) : this.GetComponent<NavMeshAgent>().speed * Random.Range(0.5f, 1.5f) : 40;
+        this.GetComponent<NavMeshAgent>().speed = this.GetComponent<NavMeshAgent>().speed < 40 ? this.GetComponent<NavMeshAgent>().speed < 20 ? this.GetComponent<NavMeshAgent>().speed * Random.Range(1f, 1.2f) : this.GetComponent<NavMeshAgent>().speed * Random.Range(0.7f, 1.2f) : 30;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Finish"))
+            currentLaps++;
     }
 }
