@@ -29,6 +29,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject soundMenu;
     [SerializeField] private GameObject gameplayMenu;
     [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject controls2Menu;
     [SerializeField] private GameObject confirmationMenu;
     [Space(10)]
     [Header("Menu Popout Dialogs")]
@@ -107,6 +108,14 @@ public class MenuController : MonoBehaviour
         {
             gameplayMenu.SetActive(false);
             controlsMenu.SetActive(true);
+            controls2Menu.SetActive(false);
+            menuNumber = 6;
+        }
+        if (buttonType == "Controls2")
+        {
+            gameplayMenu.SetActive(false);
+            controls2Menu.SetActive(true);
+            controlsMenu.SetActive(false);
             menuNumber = 6;
         }
 
@@ -320,6 +329,7 @@ public class MenuController : MonoBehaviour
     public void GoBackToGameplayMenu()
     {
         controlsMenu.SetActive(false);
+        controls2Menu.SetActive(false);
         gameplayMenu.SetActive(true);
         menuNumber = 5;
     }
