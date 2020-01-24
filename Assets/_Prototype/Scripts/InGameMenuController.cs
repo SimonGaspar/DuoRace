@@ -156,11 +156,13 @@ public class InGameMenuController : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        ResumeGame();
         SceneManager.LoadScene(mainMenuLevel);
     }
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(currentLevel);
+        ResumeGame();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     #region Back to Menus

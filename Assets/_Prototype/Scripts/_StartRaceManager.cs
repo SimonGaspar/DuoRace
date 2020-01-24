@@ -18,7 +18,7 @@ public class _StartRaceManager : MonoBehaviour
 
     public static GameObject PlayerInstance { get; private set; }
 
-    private static List<GameObject> CreatedCars = new List<GameObject>();
+    private static List<GameObject> CreatedCars;
     private List<Transform> _goals = new List<Transform>();
     private Transform _goal; 
     private static Animator animator;
@@ -28,15 +28,18 @@ public class _StartRaceManager : MonoBehaviour
     private bool startEnd;
     void Awake()
     {
+        currentLap = 1;
+        gameOver = false;
+        CreatedCars = new List<GameObject>();
         startEnd = true;
         var laps = this.GetComponentsInChildren<Text>().Where(x => x.name.Equals("CurrentLaps")).First();
         laps.text = $"Laps {currentLap}/{maxLaps}";
 
         animator = this.GetComponent<Animator>();
         var position = StartPosition.GetComponentsInChildren<Transform>().Where(x => x.name.Contains(prefixOfPosition)).ToList();
-        PlayerInstance = GameObject.Instantiate(Player, position[0].position, position[0].rotation);
-        //Player.transform.position = position[0].position;
-        //Player.transform.rotation = position[0].rotation;
+        Player.transform.position = position[0].position;
+        Player.transform.rotation = position[0].rotation;
+        PlayerInstance = Player;
         PlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
 
         for (int i = 1; i < Cars.Count; i++) {
@@ -51,6 +54,7 @@ public class _StartRaceManager : MonoBehaviour
         _goal = _goals.First();
 
         cameraTarget= vpCamera.GetComponent<VPCameraController>();
+        animator.SetBool("Start", true);
     }
 
     public static void StartAgentsAndPlayer() {

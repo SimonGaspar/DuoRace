@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 1073901325649480410}
   - component: {fileID: 5106405207439643202}
   - component: {fileID: 5039937596389642521}
+  - component: {fileID: 1421866821818486283}
   m_Layer: 0
   m_Name: AgentCar6
   m_TagString: Untagged
@@ -559,6 +560,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.94, y: 0.43, z: 3.68}
   m_Center: {x: 0, y: 0.81, z: -0.48}
+--- !u!54 &1421866821818486283
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009275317364625907}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3009504100396866999
 GameObject:
   m_ObjectHideFlags: 0
