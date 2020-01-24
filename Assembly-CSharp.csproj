@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Prototype\Scripts\_StartRaceManager.cs" />
     <Compile Include="Assets\_Prototype\Scripts\AnimatorStartGame.cs" />
+    <Compile Include="Assets\_Prototype\Scripts\InGameMenuController.cs" />
     <Compile Include="Assets\_Prototype\Scripts\NavMeshAgentMove.cs" />
     <Compile Include="Assets\SpeedTutor_Full_Menu_System\GUI Elements\UI_BrightnessShader\Brightness.cs" />
     <Compile Include="Assets\SpeedTutor_Full_Menu_System\MenuScripts\Init_LoadPreferences.cs" />

@@ -10,7 +10,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-
+using UnityEngine.SceneManagement;
 
 namespace VehiclePhysics.UI
 {
@@ -20,12 +20,14 @@ public class EscapeDialog : MonoBehaviour
 	public VehicleBase vehicle;
 	public KeyCode escapeKey = KeyCode.Escape;
 
-	[Header("Buttons")]
+
+    [Header("Buttons")]
 	public Button continueButton;
 	public Button resetCarButton;
 	public Button resetButton;
     public Button optionsButton;
-    public Button quitButton;
+        public Button mainMenuButton;
+        public Button quitButton;
 
 
 	 float m_currentTimeScale;
@@ -47,7 +49,8 @@ public class EscapeDialog : MonoBehaviour
         AddListener(optionsButton, OnOptions);
         AddListener(resetCarButton, OnResetCar);
 		AddListener(resetButton, OnReset);
-		AddListener(quitButton, OnQuit);
+            AddListener(mainMenuButton, OnMainMenu);
+            AddListener(quitButton, OnQuit);
 
 		 m_currentTimeScale = Time.timeScale;
 		 Time.timeScale = 0.0f;
@@ -83,9 +86,9 @@ public class EscapeDialog : MonoBehaviour
 	void OnContinue ()
 		{
 		this.gameObject.SetActive(false);
-		}
+		}       
 
-    void OnOptions ()
+        void OnOptions ()
         {
             Debug.Log("options");   
             var foundMenuObject = FindObjectOfType<MenuOverlay>();
@@ -112,8 +115,12 @@ public class EscapeDialog : MonoBehaviour
 		EdyCommonTools.SceneReload.Reload();
 		}
 
+        void OnMainMenu()
+        {
+            SceneManager.LoadScene("Main_Menu");
+        }
 
-	void OnQuit ()
+        void OnQuit ()
 		{
 		Application.Quit();
 		}
