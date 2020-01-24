@@ -42,7 +42,8 @@ public class InGameMenuController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Esc"))
         {
             if (menuNumber == 0)
             {
