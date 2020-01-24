@@ -26,6 +26,7 @@ public class _StartRaceManager : MonoBehaviour
     private static bool gameOver = false;
     private static int position;
     private bool startEnd;
+
     void Awake()
     {
         currentLap = 1;
@@ -123,8 +124,9 @@ public class _StartRaceManager : MonoBehaviour
         {
             gameOver = true;
             position = CreatedCars.Select(x => x.GetComponent<NavMeshAgentMove>()).Count(x => x.currentLaps > maxLaps)+1;
-            StopAgentsAndPlayer();
-            animator.SetBool("GameOver", gameOver);
+            FindObjectOfType<InGameMenuController>().GameOver(position);
+            //StopAgentsAndPlayer();
+            //animator.SetBool("GameOver", gameOver);
         }
     }
 }

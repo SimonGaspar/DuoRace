@@ -9823,7 +9823,7 @@ GameObject:
   - component: {fileID: 5810802146701504497}
   - component: {fileID: 2904247912174879477}
   m_Layer: 0
-  m_Name: GameModeDialog_SprintButton (1)
+  m_Name: GameModeDialog_SprintButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

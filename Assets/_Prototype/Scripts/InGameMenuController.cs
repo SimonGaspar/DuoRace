@@ -11,6 +11,8 @@ public class InGameMenuController : MonoBehaviour
     [SerializeField] private string currentLevel;
     [SerializeField] private string mainMenuLevel;
 
+    [SerializeField] private Text positionText;
+
     #region Menu Dialogs
     [Header("Main Menu Components")]
     [SerializeField] private GameObject menuDefaultCanvas;
@@ -28,7 +30,8 @@ public class InGameMenuController : MonoBehaviour
     private AudioSource[] sources;
     private List<AudioSource> playingAudio = new List<AudioSource>();
 
-
+    private bool gameOver = false;
+   
     private float m_currentTimeScale;
     
 
@@ -43,9 +46,11 @@ public class InGameMenuController : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        if (Input.GetButtonDown("Esc"))
+        if (gameOver) return;
+
+            if (Input.GetButtonDown("Esc"))
         {
+            Debug.Log("esc");
             if (menuNumber == 0)
             {
                 PauseGame();
@@ -197,10 +202,12 @@ public class InGameMenuController : MonoBehaviour
     }
     #endregion
 
-    public void GameOverDialog()
+    public void GameOver(int position)
     {
+        gameOver = true;
         PauseGame();
         pauseDialog.SetActive(false);
         gameOverDialog.SetActive(true);
+        positionText.GetComponent<Text>().text = position + ".";
     }
 }
