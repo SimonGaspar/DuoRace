@@ -21,6 +21,7 @@ public class InGameMenuController : MonoBehaviour
     [SerializeField] private GameObject mainMenuDialog;
     [SerializeField] private GameObject quitDialog;
     [SerializeField] private GameObject controlsDialog;
+    [SerializeField] private GameObject controls2Dialog;
     [SerializeField] private GameObject gameOverDialog;
     #endregion
 
@@ -142,6 +143,22 @@ public class InGameMenuController : MonoBehaviour
             menuNumber = 2;
         }
 
+        if (buttonType == "Controls")
+        {
+            pauseDialog.SetActive(false);
+            controls2Dialog.SetActive(false);
+            controlsDialog.SetActive(true);
+            menuNumber = 2;
+        }
+
+        if (buttonType == "Controls2")
+        {
+            pauseDialog.SetActive(false);
+            controls2Dialog.SetActive(true);
+            controlsDialog.SetActive(false);
+            menuNumber = 2;
+        }
+
         if (buttonType == "No")
         {
             GoBackToGameMenu();
@@ -173,6 +190,7 @@ public class InGameMenuController : MonoBehaviour
         quitDialog.SetActive(false);
         restartDialog.SetActive(false);
         controlsDialog.SetActive(false);
+        controls2Dialog.SetActive(false);
         menuNumber = 1;
     }
     #endregion
